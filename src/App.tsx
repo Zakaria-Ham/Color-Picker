@@ -6,9 +6,10 @@ function App() {
   const [green, setGreen] = useState(255);
   const [blue, setBlue] = useState(255);
   const [bgColor, setBgColor] = useState("rgb(255, 255, 255)");
+  const [Opacity, setOpacity] = useState(100);
 
   const colorChange = () => {
-    setBgColor(`rgb(${red}, ${green}, ${blue})`);
+    setBgColor(`rgba(${red}, ${green}, ${blue}, ${Opacity / 100})`);
   };
   return (
     <>
@@ -22,6 +23,7 @@ function App() {
             {red.toString(16)}
             {green.toString(16)}
             {blue.toString(16)}
+            {Opacity.toString(16)}
           </p>
         </div>
         <div className="inputs">
@@ -50,6 +52,15 @@ function App() {
             max="255"
             value={blue}
             onChange={(e) => setBlue(Number(e.target.value))}
+            onSubmit={colorChange}
+          />
+          <input
+            placeholder="Opacity"
+            type="number"
+            min="0"
+            max="99"
+            value={Opacity}
+            onChange={(e) => setOpacity(Number(e.target.value))}
             onSubmit={colorChange}
           />
         </div>
